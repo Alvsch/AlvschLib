@@ -1,0 +1,6 @@
+name: AlvschLib
+version: '${project.version}'
+main: me.alvsch.alvschlib.AlvschLib
+api-version: 1.19
+authors: [ Alvsch1 ]
+description: Commons library for minecraft spigot plugins
