@@ -2,6 +2,7 @@ package me.alvsch.alvschlib.classes;
 
 import me.alvsch.alvschlib.util.Utils;
 import org.bukkit.Material;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.jetbrains.annotations.NotNull;
@@ -33,6 +34,5 @@ public class MenuItem extends ItemStack {
         this.setItemMeta(meta);
 
     }
-
 
 }

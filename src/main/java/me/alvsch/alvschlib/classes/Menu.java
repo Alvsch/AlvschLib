@@ -1,36 +1,35 @@
 package me.alvsch.alvschlib.classes;
 
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import me.alvsch.alvschlib.AlvschLib;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.InventoryHolder;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-public class Menu implements Cloneable {
+public class Menu implements InventoryHolder {
 
-    @Getter
     private final Inventory inventory;
     private final List<MenuItem> items;
 
+    @Getter
+    private final String title;
+
     public Menu(String title, int rows) {
-        if (rows < 2) {
-            throw new IllegalArgumentException("Size must be between 2 and 6");
-        }
+        this.title = title;
 
         int size = rows*9;
-        this.inventory = Bukkit.createInventory(null, size, title);
+        this.inventory = Bukkit.createInventory(this, size, title);
         this.items = new ArrayList<>(size);
 
-        //45 46 47 48 49 50 51 52 53
-        this.setItem(size - 1, new MenuData(this, AlvschLib.getPlugin()));
-        MenuItem placeholder = new MenuItem(" ", Material.BLACK_STAINED_GLASS_PANE, 1);
-        for(int i = size - 2; i > size - 9; i--) {
-            this.setItem(i, placeholder);
-        }
     }
 
     public void open(Player player) {
@@ -60,5 +59,11 @@ public class Menu implements Cloneable {
         } catch (CloneNotSupportedException e) {
             throw new Error(e);
         }
+    }
+
+    @NotNull
+    @Override
+    public Inventory getInventory() {
+        return this.inventory;
     }
 }

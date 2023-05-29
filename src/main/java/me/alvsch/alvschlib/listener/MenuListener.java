@@ -1,6 +1,10 @@
 package me.alvsch.alvschlib.listener;
 
 import lombok.RequiredArgsConstructor;
+import me.alvsch.alvschlib.classes.Clickable;
+import me.alvsch.alvschlib.classes.Menu;
+import me.alvsch.alvschlib.classes.MenuItem;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -15,15 +19,19 @@ public class MenuListener implements Listener {
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
-        Inventory topInventory = event.getView().getTopInventory();
-        ItemStack data = topInventory.getItem(topInventory.getSize() - 1);
+        Inventory inventory = event.getView().getTopInventory();
+        int size = inventory.getSize();
 
-        // Get data and check
-        if(!true) {
+        if(!(inventory.getHolder() instanceof Menu menu) || event.getClickedInventory().equals(inventory)) {
             return;
         }
-        // Handle, this is a menu
+
         event.setCancelled(true);
+
+        MenuItem item = menu.getItem(event.getSlot());
+        if(item instanceof Clickable clickable) {
+            clickable.onClick(event);
+        }
 
     }
 }
