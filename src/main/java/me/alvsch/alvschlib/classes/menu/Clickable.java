@@ -1,4 +1,4 @@
-package me.alvsch.alvschlib.classes;
+package me.alvsch.alvschlib.classes.menu;
 
 import org.bukkit.event.inventory.InventoryClickEvent;
 

@@ -3,6 +3,8 @@ package me.alvsch.alvschlib.util;
 
 import net.md_5.bungee.api.ChatColor;
 
+import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -33,6 +35,26 @@ public class Utils {
 
         matcher.appendTail(sb);
         return sb.toString();
+    }
+
+    public static List<File> getFiles(File dir) {
+        List<File> fileList = new ArrayList<>();
+        File[] files = dir.listFiles();
+
+        if(files == null) {
+            return fileList;
+        }
+
+        for (File file : files) {
+            if (file.isFile()) {
+                fileList.add(file);
+            } else if (file.isDirectory()) {
+                List<File> nestedFiles = Utils.getFiles(file);
+                fileList.addAll(nestedFiles);
+            }
+        }
+
+        return fileList;
     }
 
 }

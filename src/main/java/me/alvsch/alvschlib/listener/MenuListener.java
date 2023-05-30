@@ -1,16 +1,16 @@
 package me.alvsch.alvschlib.listener;
 
 import lombok.RequiredArgsConstructor;
-import me.alvsch.alvschlib.classes.Clickable;
-import me.alvsch.alvschlib.classes.Menu;
-import me.alvsch.alvschlib.classes.MenuItem;
-import org.bukkit.Material;
+import me.alvsch.alvschlib.classes.menu.Clickable;
+import me.alvsch.alvschlib.classes.menu.Menu;
+import me.alvsch.alvschlib.classes.menu.MenuItem;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.Objects;
 
 @RequiredArgsConstructor
 public class MenuListener implements Listener {
@@ -20,9 +20,8 @@ public class MenuListener implements Listener {
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
         Inventory inventory = event.getView().getTopInventory();
-        int size = inventory.getSize();
 
-        if(!(inventory.getHolder() instanceof Menu menu) || event.getClickedInventory().equals(inventory)) {
+        if(!(inventory.getHolder() instanceof Menu menu) || Objects.equals(event.getClickedInventory(), inventory)) {
             return;
         }
 
