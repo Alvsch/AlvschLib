@@ -5,6 +5,7 @@ import net.md_5.bungee.api.ChatColor;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -18,7 +19,7 @@ public class Utils {
     }
 
     public static List<String> color(List<String> list) {
-        if (list == null || list.isEmpty()) return List.of();
+        if (list == null ||  list.isEmpty()) return List.of();
         return list.stream().map(Utils::color).toList();
     }
 
@@ -56,5 +57,6 @@ public class Utils {
 
         return fileList;
     }
+
 
 }
