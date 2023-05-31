@@ -23,11 +23,7 @@
      * 
      * 
      * 
-     * d
-
-### ArmorEquipEvent
-    *** Features ***
-     * Armor Equip Detection
+     * 
 
 ### CommonUtils - Java/Spigot
     *** Features ***

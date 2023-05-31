@@ -21,9 +21,9 @@ public class MenuListener implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Inventory inventory = event.getView().getTopInventory();
 
-        if(!(inventory.getHolder() instanceof Menu menu) || Objects.equals(event.getClickedInventory(), inventory)) {
-            return;
-        }
+        if(Objects.equals(event.getClickedInventory(), inventory) ||
+                !(inventory.getHolder() instanceof Menu menu)
+        ) return;
 
         event.setCancelled(true);
 

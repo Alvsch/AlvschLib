@@ -24,4 +24,22 @@ public class ItemUtils {
         return item;
     }
 
+    public static void rename(ItemStack item, String updatedName) {
+        ItemMeta meta = item.getItemMeta();
+        if(meta == null) {
+            throw new NullPointerException("ItemStack's ItemMeta cannot be null");
+        }
+        meta.setDisplayName(updatedName);
+        item.setItemMeta(meta);
+    }
+
+    public static void lore(ItemStack item, String... lore) {
+        ItemMeta meta = item.getItemMeta();
+        if(meta == null) {
+            throw new NullPointerException("ItemStack's ItemMeta cannot be null");
+        }
+        meta.setLore(List.of(lore));
+        item.setItemMeta(meta);
+    }
+
 }

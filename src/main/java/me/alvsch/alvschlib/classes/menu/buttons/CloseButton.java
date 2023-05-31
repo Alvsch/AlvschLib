@@ -1,6 +1,5 @@
 package me.alvsch.alvschlib.classes.menu.buttons;
 
-import me.alvsch.alvschlib.classes.menu.MenuButton;
 import org.bukkit.Material;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.jetbrains.annotations.NotNull;

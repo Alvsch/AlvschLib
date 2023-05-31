@@ -1,5 +1,7 @@
-package me.alvsch.alvschlib.classes.menu;
+package me.alvsch.alvschlib.classes.menu.buttons;
 
+import me.alvsch.alvschlib.classes.menu.Clickable;
+import me.alvsch.alvschlib.classes.menu.MenuItem;
 import org.bukkit.Material;
 import org.jetbrains.annotations.NotNull;
 

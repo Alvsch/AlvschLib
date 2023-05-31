@@ -1,6 +1,5 @@
 package me.alvsch.alvschlib.classes.menu.buttons;
 
-import me.alvsch.alvschlib.classes.menu.MenuButton;
 import me.alvsch.alvschlib.classes.menu.PageMenu;
 import org.bukkit.Material;
 import org.bukkit.entity.HumanEntity;
