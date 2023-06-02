@@ -38,25 +38,5 @@ public class Utils {
         return sb.toString();
     }
 
-    public static List<File> getFiles(File dir) {
-        List<File> fileList = new ArrayList<>();
-        File[] files = dir.listFiles();
-
-        if(files == null) {
-            return fileList;
-        }
-
-        for (File file : files) {
-            if (file.isFile()) {
-                fileList.add(file);
-            } else if (file.isDirectory()) {
-                List<File> nestedFiles = Utils.getFiles(file);
-                fileList.addAll(nestedFiles);
-            }
-        }
-
-        return fileList;
-    }
-
 
 }

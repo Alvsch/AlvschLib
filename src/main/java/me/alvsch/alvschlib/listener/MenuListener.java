@@ -1,6 +1,5 @@
 package me.alvsch.alvschlib.listener;
 
-import lombok.RequiredArgsConstructor;
 import me.alvsch.alvschlib.classes.menu.Clickable;
 import me.alvsch.alvschlib.classes.menu.Menu;
 import me.alvsch.alvschlib.classes.menu.MenuItem;
@@ -12,10 +11,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Objects;
 
-@RequiredArgsConstructor
 public class MenuListener implements Listener {
 
     private final JavaPlugin plugin;
+
+    public MenuListener(JavaPlugin plugin) {
+        this.plugin = plugin;
+        plugin.getServer().getPluginManager().registerEvents(this, plugin);
+    }
 
     @EventHandler
     public void onInventoryClick(InventoryClickEvent event) {
