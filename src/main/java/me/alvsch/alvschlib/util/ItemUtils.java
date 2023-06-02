@@ -1,11 +1,14 @@
 package me.alvsch.alvschlib.util;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
+import java.util.UUID;
 
 public class ItemUtils {
 
@@ -22,6 +25,16 @@ public class ItemUtils {
 
         item.setItemMeta(meta);
         return item;
+    }
+
+    public static ItemStack createSkullItem(UUID uuid) {
+        ItemStack skullItem = new ItemStack(Material.PLAYER_HEAD);
+        SkullMeta skullMeta = (SkullMeta) skullItem.getItemMeta();
+
+        skullMeta.setOwningPlayer(Bukkit.getOfflinePlayer(uuid));
+        skullItem.setItemMeta(skullMeta);
+
+        return skullItem;
     }
 
     public static void rename(ItemStack item, String updatedName) {

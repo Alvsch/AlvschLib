@@ -3,9 +3,6 @@ package me.alvsch.alvschlib.util;
 
 import net.md_5.bungee.api.ChatColor;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

@@ -3,14 +3,17 @@ package me.alvsch.alvschlib.classes;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
+import javax.xml.stream.FactoryConfigurationError;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 
 public class JsonFacade {
 
+    @Getter
     private final JsonObject jsonObject;
 
     public JsonFacade(JsonObject jsonObject) {
@@ -30,23 +33,28 @@ public class JsonFacade {
         JsonObject currentObject = jsonObject;
         for (int i = 0; i < keys.length - 1; i++) {
             String key = keys[i];
-            if (currentObject.has(key) && currentObject.get(key).isJsonObject()) {
-                currentObject = currentObject.get(key).getAsJsonObject();
+            if (!currentObject.has(key) || !currentObject.get(key).isJsonObject()) {
+                JsonObject newObject = new JsonObject();
+                currentObject.add(key, newObject);
+                currentObject = newObject;
             } else {
-                currentObject.addProperty(keys[i], value);
+                currentObject = currentObject.get(key).getAsJsonObject();
             }
         }
+
+        String lastKey = keys[keys.length - 1];
+        currentObject.addProperty(lastKey, value);
     }
 
     public JsonElement get(String path) {
         String[] keys = path.split("\\.");
 
         JsonObject currentObject = this.jsonObject;
-        for(String key : keys) {
-            if (currentObject.has(key) && currentObject.get(key).isJsonObject()) {
-                currentObject = currentObject.get(key).getAsJsonObject();
+        for(int i = 0; i < keys.length; i++) {
+            if (currentObject.has(keys[i]) && currentObject.get(keys[i]).isJsonObject()) {
+                currentObject = currentObject.get(keys[i]).getAsJsonObject();
             } else {
-                return null;
+                return i == keys.length - 1 ? currentObject.get(keys[i]) : null;
             }
         }
 
@@ -57,11 +65,11 @@ public class JsonFacade {
         String[] keys = path.split("\\.");
 
         JsonObject currentObject = jsonObject;
-        for (String key : keys) {
-            if (currentObject.has(key) && currentObject.get(key).isJsonObject()) {
-                currentObject = currentObject.get(key).getAsJsonObject();
+        for (int i = 0; i < keys.length; i++) {
+            if (currentObject.has(keys[i]) && currentObject.get(keys[i]).isJsonObject()) {
+                currentObject = currentObject.get(keys[i]).getAsJsonObject();
             } else {
-                return false;
+                return i == keys.length - 1 && currentObject.has(keys[i]);
             }
         }
 

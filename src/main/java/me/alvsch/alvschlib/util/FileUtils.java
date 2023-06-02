@@ -1,17 +1,17 @@
 package me.alvsch.alvschlib.util;
 
+import me.alvsch.alvschlib.AlvschLib;
 import me.alvsch.alvschlib.Logger;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtils {
 
-    public static List<File> getFiles(File dir) {
+    public static List<File> listFiles(File dir) {
         List<File> fileList = new ArrayList<>();
         File[] files = dir.listFiles();
 
@@ -23,7 +23,7 @@ public class FileUtils {
             if (file.isFile()) {
                 fileList.add(file);
             } else if (file.isDirectory()) {
-                List<File> nestedFiles = FileUtils.getFiles(file);
+                List<File> nestedFiles = FileUtils.listFiles(file);
                 fileList.addAll(nestedFiles);
             }
         }
