@@ -10,18 +10,22 @@ import java.io.*;
 
 public class ConfigurationFactory {
 
-    public YamlConfiguration createWithDefaults(File file, String resourcePath) {
+    public YamlConfiguration createWithDefaults(File file, String defaultResourcePath) throws FileNotFoundException {
+        return this.createWithDefaults(new FileInputStream(file), defaultResourcePath);
+    }
+
+    public YamlConfiguration createWithDefaults(InputStream stream, String defaultResourcePath) {
         YamlConfiguration config = new YamlConfiguration();
 
         try {
-            config.load(file);
+            config.load(new InputStreamReader(stream));
 
-            FileConfiguration defaultConfig = this.getFromResource(resourcePath);
+            FileConfiguration defaultConfig = this.getFromResource(defaultResourcePath);
             config.options().copyDefaults(true);
             config.setDefaults(defaultConfig);
         } catch (FileNotFoundException ignored) {
         } catch (IOException | InvalidConfigurationException e) {
-            Logger.log(Logger.LogLevel.ERROR, "Could not load " + file);
+            Logger.log(Logger.LogLevel.ERROR, "Could not load " + stream);
         }
 
         return config;

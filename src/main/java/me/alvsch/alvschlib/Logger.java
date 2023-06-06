@@ -3,6 +3,8 @@ package me.alvsch.alvschlib;
 import me.alvsch.alvschlib.util.Utils;
 import org.bukkit.Bukkit;
 
+import java.util.logging.Level;
+
 public class Logger {
 
     /**
@@ -20,6 +22,7 @@ public class Logger {
             case SUCCESS -> Bukkit.getConsoleSender().sendMessage(Utils.color("&8[&aSUCCESS&8] &f" + message));
             case OUTLINE -> Bukkit.getConsoleSender().sendMessage(Utils.color("&7" + message));
         }
+
 
 
     }

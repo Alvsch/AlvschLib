@@ -43,10 +43,12 @@ public class IntegrationsManager {
     }
 
     private void onServerLoad() {
+        /*
         load("LuckPerms", integration -> {
             new LuckPermsIntegration(plugin).register();
             isLuckPermsInstalled = true;
         });
+         */
 
     }
 

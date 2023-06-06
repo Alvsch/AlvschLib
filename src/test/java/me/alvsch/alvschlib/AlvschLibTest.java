@@ -5,12 +5,14 @@ import org.junit.jupiter.api.Test;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class AlvschLibTest {
 
     @Test
     public void javaTest() {
         String test = "hello /join/join/join/join/join/join/join/join/join/join/join/join/join/join/join/join/join";
-        System.out.println(removeRepeatedElements(test));
+        assertEquals("hello /join", removeRepeatedElements(test));
     }
 
 
