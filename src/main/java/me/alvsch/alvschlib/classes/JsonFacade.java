@@ -7,9 +7,7 @@ import lombok.Getter;
 import org.jetbrains.annotations.NotNull;
 
 import javax.xml.stream.FactoryConfigurationError;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 
 public class JsonFacade {
 
@@ -20,11 +18,9 @@ public class JsonFacade {
         this.jsonObject = jsonObject;
     }
 
-    public JsonFacade(File file) throws IOException {
-        try(FileReader reader = new FileReader(file)) {
-            JsonElement element = JsonParser.parseReader(reader);
-            this.jsonObject = element.getAsJsonObject();
-        }
+    public JsonFacade(Reader reader) {
+        JsonElement element = JsonParser.parseReader(reader);
+        this.jsonObject = element.getAsJsonObject();
     }
 
     public void set(String path, String value) {

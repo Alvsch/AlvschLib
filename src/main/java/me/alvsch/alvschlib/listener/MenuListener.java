@@ -13,10 +13,7 @@ import java.util.Objects;
 
 public class MenuListener implements Listener {
 
-    private final JavaPlugin plugin;
-
-    public MenuListener(JavaPlugin plugin) {
-        this.plugin = plugin;
+    public void register(JavaPlugin plugin) {
         plugin.getServer().getPluginManager().registerEvents(this, plugin);
     }
 
@@ -24,9 +21,7 @@ public class MenuListener implements Listener {
     public void onInventoryClick(InventoryClickEvent event) {
         Inventory inventory = event.getView().getTopInventory();
 
-        if(Objects.equals(event.getClickedInventory(), inventory) ||
-                !(inventory.getHolder() instanceof Menu menu)
-        ) return;
+        if(!(inventory.getHolder() instanceof Menu menu)) return;
 
         event.setCancelled(true);
 
