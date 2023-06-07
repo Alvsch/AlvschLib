@@ -52,7 +52,6 @@ class MenuTest {
         menu.open(player);
 
         Inventory inventory = player.getOpenInventory().getTopInventory();
-        assertNotNull(inventory);
         assertInstanceOf(Menu.class, inventory.getHolder());
 
         InventoryClickEvent event = player.simulateInventoryClick(0);
