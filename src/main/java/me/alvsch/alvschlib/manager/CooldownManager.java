@@ -8,24 +8,24 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-public class CooldownManager {
+public class CooldownManager<T> {
 
-    private final Map<UUID, Long> cooldowns = new HashMap<>();
+    private final Map<T, Long> cooldowns = new HashMap<>();
 
     public CooldownManager() {
 
     }
 
-    public void addCooldown(UUID uuid, long seconds) {
-        cooldowns.put(uuid, System.currentTimeMillis() + seconds*1000);
+    public void addCooldown(T k, long seconds) {
+        cooldowns.put(k, System.currentTimeMillis() + seconds*1000);
     }
 
-    public Long getCooldown(UUID uuid) {
-        return cooldowns.get(uuid);
+    public Long getCooldown(T k) {
+        return cooldowns.get(k);
     }
 
-    public boolean hasCooldown(UUID uuid) {
-        return cooldowns.containsKey(uuid);
+    public boolean hasCooldown(T k) {
+        return cooldowns.containsKey(k);
     }
 
     public static void setItemCooldown(Player player, Material type, int seconds) {

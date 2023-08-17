@@ -2,6 +2,7 @@ package me.alvsch.alvschlib.util;
 
 import me.alvsch.alvschlib.AlvschLib;
 import me.alvsch.alvschlib.Logger;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -39,7 +40,6 @@ public class FileUtils {
             file.createNewFile();
         } catch (IOException ex) {
             Logger.log(Logger.LogLevel.ERROR, "Cannot create " + file);
-            ex.printStackTrace();
         }
     }
 

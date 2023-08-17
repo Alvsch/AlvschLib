@@ -1,9 +1,7 @@
 package me.alvsch.alvschlib;
 
-import lombok.Getter;
 import me.alvsch.alvschlib.integrations.IntegrationsManager;
 import org.bukkit.plugin.PluginDescriptionFile;
-import org.bukkit.plugin.PluginLoader;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
 import org.jetbrains.annotations.TestOnly;
@@ -12,7 +10,6 @@ import java.io.File;
 
 public class AlvschLib extends JavaPlugin {
 
-    @Getter
     private static JavaPlugin plugin;
     private final IntegrationsManager integrations = new IntegrationsManager(this);
     private final boolean unitTest;
