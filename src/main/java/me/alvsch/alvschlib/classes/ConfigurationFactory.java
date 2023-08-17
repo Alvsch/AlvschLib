@@ -1,5 +1,6 @@
 package me.alvsch.alvschlib.classes;
 
+import lombok.RequiredArgsConstructor;
 import me.alvsch.alvschlib.AlvschLib;
 import me.alvsch.alvschlib.Logger;
 import org.bukkit.configuration.InvalidConfigurationException;
@@ -8,7 +9,10 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.*;
 
+@RequiredArgsConstructor
 public class ConfigurationFactory {
+
+    private final AlvschLib plugin;
 
     public YamlConfiguration createWithDefaults(File file, String defaultResourcePath) throws FileNotFoundException {
         return this.createWithDefaults(new FileInputStream(file), defaultResourcePath);
@@ -32,7 +36,7 @@ public class ConfigurationFactory {
     }
 
     private YamlConfiguration getFromResource(String path) throws IOException {
-        InputStream stream = AlvschLib.getPlugin().getResource(path);
+        InputStream stream = plugin.getResource(path);
         if(stream == null) {
             throw new NullPointerException("Stream cannot be null!");
         }

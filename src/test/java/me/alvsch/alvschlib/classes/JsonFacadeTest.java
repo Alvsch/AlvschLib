@@ -17,12 +17,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class JsonFacadeTest {
 
     private static ServerMock server;
+    private static AlvschLib plugin;
 
     @BeforeAll
     public static void setUp() {
         // Mock the server and plugin
         server = MockBukkit.mock();
-        MockBukkit.load(AlvschLib.class);
+        plugin = MockBukkit.load(AlvschLib.class);
     }
 
     @AfterAll
@@ -50,7 +51,7 @@ class JsonFacadeTest {
 
     @Test
     void fileTest() {
-        Reader reader = new InputStreamReader(AlvschLib.getPlugin().getResource("jsonfacade/data.json"));
+        Reader reader = new InputStreamReader(plugin.getResource("jsonfacade/data.json"));
         JsonFacade facade = new JsonFacade(reader);
         // TODO continue
 
@@ -69,7 +70,7 @@ class JsonFacadeTest {
         JsonFacade facade = new JsonFacade(new JsonObject());
         JsonObject jsonObject = facade.getJsonObject();
 
-        JsonElement element = JsonParser.parseReader(new InputStreamReader(AlvschLib.getPlugin().getResource("jsonfacade/compare.json")));
+        JsonElement element = JsonParser.parseReader(new InputStreamReader(plugin.getResource("jsonfacade/compare.json")));
         JsonObject comparison = element.getAsJsonObject();
 
         assertNotEquals(comparison.toString(), jsonObject.toString());

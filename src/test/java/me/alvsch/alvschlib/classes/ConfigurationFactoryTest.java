@@ -15,12 +15,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ConfigurationFactoryTest {
 
     private static ServerMock server;
+    private static AlvschLib plugin;
 
     @BeforeAll
     public static void setUp() {
         // Mock the server and plugin
         server = MockBukkit.mock();
-        MockBukkit.load(AlvschLib.class);
+        plugin = MockBukkit.load(AlvschLib.class);
     }
 
     @AfterAll
@@ -32,8 +33,8 @@ class ConfigurationFactoryTest {
     @Test
     void allValuesExist() {
 
-        ConfigurationFactory factory = new ConfigurationFactory();
-        InputStream is = AlvschLib.getPlugin().getResource("configurationfactory/config.yml");
+        ConfigurationFactory factory = new ConfigurationFactory(plugin);
+        InputStream is = plugin.getResource("configurationfactory/config.yml");
         YamlConfiguration config = factory.createWithDefaults(is, "configurationfactory/default.yml");
 
         String name1 = config.getString("user1.name");
