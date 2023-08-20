@@ -1,14 +1,9 @@
 package me.alvsch.alvschlib.util;
 
-import me.alvsch.alvschlib.AlvschLib;
-import me.alvsch.alvschlib.Logger;
-import org.bukkit.Bukkit;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class FileUtils {
 
@@ -32,15 +27,11 @@ public class FileUtils {
         return fileList;
     }
 
-    public static void createFile(File file) {
+    public static void createFile(File file) throws IOException {
         if(file.exists()) return;
 
         file.getParentFile().mkdirs();
-        try {
-            file.createNewFile();
-        } catch (IOException ex) {
-            Logger.log(Logger.LogLevel.ERROR, "Cannot create " + file);
-        }
+        file.createNewFile();
     }
 
 }

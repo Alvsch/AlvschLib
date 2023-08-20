@@ -7,10 +7,12 @@ import org.bukkit.plugin.java.JavaPluginLoader;
 import org.jetbrains.annotations.TestOnly;
 
 import java.io.File;
+import java.util.logging.Level;
 
 public class AlvschLib extends JavaPlugin {
 
     private static JavaPlugin plugin;
+
     private final IntegrationsManager integrations = new IntegrationsManager(this);
     private final boolean unitTest;
 
@@ -35,18 +37,22 @@ public class AlvschLib extends JavaPlugin {
 
         if(unitTest) return;
 
-        Logger.log(Logger.LogLevel.INFO, "Enabling AlvschLib");
+        getLogger().log(Level.INFO, "Enabling AlvschLib");
 
-        Logger.log(Logger.LogLevel.INFO, "Loading Third-Party plugin integrations...");
+        getLogger().log(Level.INFO, "Loading Third-Party plugin integrations...");
         integrations.start();
 
     }
 
     @Override
     public void onDisable() {
-        Logger.log(Logger.LogLevel.INFO, "Disabling AlvschLib");
+        if (unitTest) return;
+
+        getLogger().log(Level.INFO, "Disabling AlvschLib");
     }
 
-
+    public static JavaPlugin getInstance() {
+        return plugin;
+    }
 
 }

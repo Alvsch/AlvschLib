@@ -1,13 +1,12 @@
 package me.alvsch.alvschlib.integrations;
 
 import lombok.Getter;
-import me.alvsch.alvschlib.Logger;
-import me.alvsch.alvschlib.Logger.LogLevel;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.function.Consumer;
+import java.util.logging.Level;
 
 @Getter
 public class IntegrationsManager {
@@ -66,13 +65,13 @@ public class IntegrationsManager {
 
         if (integration != null && integration.isEnabled()) {
             String version = integration.getDescription().getVersion();
-            Logger.log(LogLevel.INFO, "Hooked into Plugin: " + pluginName + " v" + version);
+            plugin.getLogger().log(Level.INFO, "Hooked into Plugin: " + pluginName + " v" + version);
 
             try {
                 // Run our callback
                 consumer.accept(integration);
             } catch (Exception | LinkageError x) {
-                Logger.log(LogLevel.WARNING, "Failed to hook into " + pluginName + " v" + version);
+                plugin.getLogger().log(Level.WARNING, "Failed to hook into " + pluginName + " v" + version);
             }
         }
     }
