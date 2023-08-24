@@ -30,6 +30,7 @@ public class CooldownManager<T> {
 
     public boolean expired(T k) {
         Long millis = cooldowns.get(k);
+        if (millis == null) return true;
         return millis < System.currentTimeMillis();
     }
 
