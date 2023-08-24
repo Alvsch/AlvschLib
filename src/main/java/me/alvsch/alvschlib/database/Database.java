@@ -69,7 +69,7 @@ public abstract class Database implements AutoCloseable {
         try {
             connection.close();
         } catch (SQLException e) {
-            plugin.getLogger().log(Level.SEVERE, "Test", e);
+            plugin.getLogger().log(Level.SEVERE, "Error when closing database", e);
         }
     }
 }

@@ -28,6 +28,11 @@ public class CooldownManager<T> {
         return cooldowns.containsKey(k);
     }
 
+    public boolean expired(T k) {
+        Long millis = cooldowns.get(k);
+        return millis < System.currentTimeMillis();
+    }
+
     public static void setItemCooldown(Player player, Material type, int seconds) {
         player.setCooldown(type, seconds*20);
     }

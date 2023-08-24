@@ -1,6 +1,7 @@
 package me.alvsch.alvschlib.database;
 
 import lombok.Getter;
+import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -45,7 +46,7 @@ public class SQLite extends Database {
             connection = DriverManager.getConnection("jdbc:sqlite:" + folder);
             return connection;
         } catch (SQLException e) {
-            plugin.getLogger().log(Level.SEVERE, "SQLite exception on initialize");
+            plugin.getLogger().log(Level.SEVERE, "SQLite exception on initialize", e);
 
         } catch (ClassNotFoundException ignored) {}
 
