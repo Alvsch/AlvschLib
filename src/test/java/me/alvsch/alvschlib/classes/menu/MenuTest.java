@@ -23,7 +23,7 @@ class MenuTest {
     private static ServerMock server;
     private static PlayerMock player;
 
-    private static final MenuListener listener = new MenuListener();;
+    private static final MenuListener listener = new MenuListener();
 
     @BeforeAll
     public static void setUp() {

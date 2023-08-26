@@ -1,6 +1,7 @@
 package me.alvsch.alvschlib;
 
 import me.alvsch.alvschlib.integrations.IntegrationsManager;
+import me.alvsch.alvschlib.listener.MenuListener;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.plugin.java.JavaPluginLoader;
@@ -38,6 +39,8 @@ public class AlvschLib extends JavaPlugin {
         if(unitTest) return;
 
         getLogger().log(Level.INFO, "Enabling AlvschLib");
+
+        new MenuListener().register(this);
 
         getLogger().log(Level.INFO, "Loading Third-Party plugin integrations...");
         integrations.start();

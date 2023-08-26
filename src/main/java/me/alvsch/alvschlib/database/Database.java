@@ -4,7 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
@@ -57,6 +59,29 @@ public abstract class Database implements AutoCloseable {
                 map.put(meta.getColumnName(i), result.getObject(i));
             }
             return map;
+        } catch (SQLException e) {
+            plugin.getLogger().log(Level.SEVERE, "Error when executing statement", e);
+        }
+
+        return null;
+    }
+
+    public List<Map<String, Object>> queryMultiple(String query) {
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            ResultSet result = statement.executeQuery();
+            List<Map<String, Object>> list = new ArrayList<>();
+
+            while (result.next()) {
+                ResultSetMetaData meta = result.getMetaData();
+                int length = meta.getColumnCount();
+
+                Map<String, Object> map = new HashMap<>();
+                for (int i = 1; i <= length; i++) {
+                    map.put(meta.getColumnName(i), result.getObject(i));
+                }
+                list.add(map);
+            }
+            return list;
         } catch (SQLException e) {
             plugin.getLogger().log(Level.SEVERE, "Error when executing statement", e);
         }
