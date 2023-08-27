@@ -26,7 +26,7 @@ public abstract class Database implements AutoCloseable {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             for(int i = 0; i < args.length; i++) {
                 var object = args[i];
-                statement.setObject(i, object);
+                statement.setObject(i+1, object);
             }
 
             return statement.execute();
@@ -41,7 +41,7 @@ public abstract class Database implements AutoCloseable {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             for(int i = 0; i < args.length; i++) {
                 var object = args[i];
-                statement.setObject(i, object);
+                statement.setObject(i+1, object);
             }
 
             ResultSet result = statement.executeQuery();
@@ -60,7 +60,7 @@ public abstract class Database implements AutoCloseable {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             for(int i = 0; i < args.length; i++) {
                 var object = args[i];
-                statement.setObject(i, object);
+                statement.setObject(i+1, object);
             }
 
             ResultSet result = statement.executeQuery();
@@ -85,7 +85,7 @@ public abstract class Database implements AutoCloseable {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
             for(int i = 0; i < args.length; i++) {
                 var object = args[i];
-                statement.setObject(i, object);
+                statement.setObject(i+1, object);
             }
 
             ResultSet result = statement.executeQuery();
