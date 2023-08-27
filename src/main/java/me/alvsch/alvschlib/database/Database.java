@@ -22,8 +22,13 @@ public abstract class Database implements AutoCloseable {
         connection = getSQLConnection();
     }
 
-    public boolean execute(String query) {
+    public boolean execute(String query, Object... args) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            for(int i = 0; i < args.length; i++) {
+                var object = args[i];
+                statement.setObject(i, object);
+            }
+
             return statement.execute();
         } catch (SQLException e) {
             plugin.getLogger().log(Level.SEVERE, "Error when executing statement", e);
@@ -32,8 +37,13 @@ public abstract class Database implements AutoCloseable {
         return false;
     }
 
-    public Object queryValue(String query, String column) {
+    public Object queryValue(String query, String column, Object... args) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            for(int i = 0; i < args.length; i++) {
+                var object = args[i];
+                statement.setObject(i, object);
+            }
+
             ResultSet result = statement.executeQuery();
             if (!result.next()) return null;
 
@@ -46,8 +56,13 @@ public abstract class Database implements AutoCloseable {
         return null;
     }
 
-    public Map<String, Object> queryRow(String query) {
+    public Map<String, Object> queryRow(String query, Object... args) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            for(int i = 0; i < args.length; i++) {
+                var object = args[i];
+                statement.setObject(i, object);
+            }
+
             ResultSet result = statement.executeQuery();
             if (!result.next()) return null;
 
@@ -66,8 +81,13 @@ public abstract class Database implements AutoCloseable {
         return null;
     }
 
-    public List<Map<String, Object>> queryMultiple(String query) {
+    public List<Map<String, Object>> queryMultiple(String query, Object... args) {
         try (PreparedStatement statement = connection.prepareStatement(query)) {
+            for(int i = 0; i < args.length; i++) {
+                var object = args[i];
+                statement.setObject(i, object);
+            }
+
             ResultSet result = statement.executeQuery();
             List<Map<String, Object>> list = new ArrayList<>();
 
